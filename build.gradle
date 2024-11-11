@@ -20,9 +20,6 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    //implementation("org.springframework.boot:spring-boot-starter-validation")
-
-    implementation 'org.liquibase:liquibase-core:4.24.0'
 
     implementation 'org.springframework.boot:spring-boot-devtools:3.3.4'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -31,11 +28,16 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+
     implementation 'name:encryption-decryption-service-1.0-SNAPSHOT'
     implementation 'name:encryption-decryption-service-1.0-SNAPSHOT-plain'
-
+    implementation 'name:authentication-service-0.0.1-SNAPSHOT'
+    implementation 'name:authentication-service-0.0.1-SNAPSHOT-plain'
     implementation 'name:logging-service-1.0-SNAPSHOT'
     implementation 'name:logging-service-1.0-SNAPSHOT-plain'
+
+    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'org.liquibase:liquibase-core'
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.mockito:mockito-core'
