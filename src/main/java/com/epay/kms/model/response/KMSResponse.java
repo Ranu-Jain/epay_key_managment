@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * Class Name: ResponseDto
+ * Class Name: KeymgmtResponse
  * *
  * Description:
  * *
@@ -19,6 +19,7 @@ import java.util.List;
  * *
  * Version: 1.0
  */
+
 @AllArgsConstructor
 @Data
 @Builder
@@ -41,4 +42,6 @@ public class KMSResponse<T> {
                 ", errors=" + errors +
                 '}';
     }
+
 }
+

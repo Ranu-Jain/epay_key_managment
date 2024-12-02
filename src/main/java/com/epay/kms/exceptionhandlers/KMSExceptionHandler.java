@@ -15,6 +15,7 @@ package com.epay.kms.exceptionhandlers;
 import com.epay.kms.dto.ErrorDto;
 import com.epay.kms.exception.KeyManagementException;
 import com.epay.kms.model.response.KMSResponse;
+import com.sbi.epay.encryptdecrypt.exception.EncryptionDecryptionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,10 +26,22 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.List;
 
+/**
+ * Class Name: KMSExceptionHandler
+ * *
+ * Description: This class handles global exception.
+ * *
+ * Author: V1017903(bhushan wadekar)
+ * <p>
+ * Copyright (c) 2024 [State Bank of India]
+ * All rights reserved
+ * *
+ * Version:1.0
+ */
 @ControllerAdvice
 public class KMSExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(KeyManagementException.class)
+    @ExceptionHandler({KeyManagementException.class})
     public ResponseEntity<Object> handleSecurityException(KeyManagementException ex) {
         ErrorDto errorDto = ErrorDto.builder()
                 .errorCode(ex.getErrorCode())
@@ -53,7 +66,8 @@ public class KMSExceptionHandler extends ResponseEntityExceptionHandler {
                         .build());
     }
 
-    @ExceptionHandler(value = { IllegalArgumentException.class, IllegalStateException.class })
+
+    @ExceptionHandler(value = { IllegalArgumentException.class, EncryptionDecryptionException.class })
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
         String requestUri = ((ServletWebRequest)request).getRequest().getRequestURI();
         logger.error("Error in handleConflict ", ex);

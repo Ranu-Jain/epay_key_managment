@@ -1,18 +1,16 @@
 package com.epay.kms.controller;
 
 
+import com.epay.kms.model.request.KeyExpiryRequest;
 import com.epay.kms.model.response.KMSResponse;
 import com.epay.kms.service.KeyManagementService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Class Name: KeymgmtController
  * *
- * Description:This class is use to send token to service layer for extract merchant id
+ * Description:This class is use to generate key and expiry key
  * *
  * Author: V1018344(Bhushan Wadekar)
  * Copyright (c) 2024 [State Bank of India]
@@ -27,9 +25,26 @@ public class KeyManagementController {
 
     private final KeyManagementService keyManagementService;
 
-    @PostMapping("/generation/{mid}")
-    public KMSResponse<String> generateKey(@PathVariable String mid) {
-        return keyManagementService.generateKey(mid);
+    /**
+     * this method is used for generate key
+     * @param mid
+     *
+     */
+    @PostMapping("/generation/{mid}/{keyLength}")
+    public KMSResponse<String> generateKey(@PathVariable String mid,@PathVariable int keyLength)  {
+        return keyManagementService.generateKey(mid,keyLength);
+    }
+
+    /**
+     * this method is use for set key expiry status and expiry time.
+     *
+     * @param mid              as string
+     * @param keyExpiryRequest as object
+     * @return kms response
+     */
+    @PostMapping("/expiry/{mid}")
+    public KMSResponse<String> keyExpiration(@PathVariable String mid, @RequestBody KeyExpiryRequest keyExpiryRequest) {
+        return keyManagementService.keyExpiry(mid, keyExpiryRequest);
     }
 
 }

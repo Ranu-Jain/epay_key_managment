@@ -20,33 +20,31 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.liquibase:liquibase-core:4.24.0'
 
     implementation 'org.springframework.boot:spring-boot-devtools:3.3.4'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'net.javacrumbs.shedlock:shedlock-spring-boot:6.0.2'
+    implementation 'net.javacrumbs.shedlock:shedlock-spring:6.0.2'
+    implementation 'net.javacrumbs.shedlock:shedlock-provider-jdbc-template:6.0.2'
+    implementation group: 'com.hazelcast', name: 'hazelcast', version: '5.5.0'
     implementation 'com.oracle.database.jdbc:ojdbc11:23.5.0.24.07'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'name:encryption-decryption-service-0.0.1-SNAPSHOT'
+    implementation 'name:hazelcast-service-0.0.1-SNAPSHOT-plain'
+    implementation 'name:logging-service-1.0-SNAPSHOT'
+    implementation 'name:authentication-service-0.0.1-SNAPSHOT'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-
-    implementation 'name:encryption-decryption-service-1.0-SNAPSHOT'
-    implementation 'name:encryption-decryption-service-1.0-SNAPSHOT-plain'
-    implementation 'name:authentication-service-0.0.1-SNAPSHOT'
-    implementation 'name:authentication-service-0.0.1-SNAPSHOT-plain'
-    implementation 'name:logging-service-1.0-SNAPSHOT'
-    implementation 'name:logging-service-1.0-SNAPSHOT-plain'
-
-    runtimeOnly 'org.postgresql:postgresql'
-    implementation 'org.liquibase:liquibase-core'
-
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.mockito:mockito-core'
-
+    implementation 'net.bytebuddy:byte-buddy:1.12.17'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
-}
-bootJar {
-    enabled = true
 }

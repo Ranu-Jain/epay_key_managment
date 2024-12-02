@@ -1,12 +1,13 @@
 package com.epay.kms.dto;
 
-import lombok.Builder;
 import lombok.Data;
+
+import java.util.UUID;
 
 /**
  * Class Name: KeyManagementDto
  * *
- * Description:
+ * Description: This class contains record(s) related to KeyManagement.
  * *
  * Author: V1018344(Rahul Prajapati)
  * Copyright (c) 2024 [State Bank of India]
@@ -14,20 +15,19 @@ import lombok.Data;
  * *
  * Version: 1.0
  */
-
 @Data
-@Builder
 public class KeyManagementDto {
 
+    private UUID id;
     private String merchantId;
     private String keyType;
     private String encryptedMek;
     private String encryptedKek;
     private long expiryTime;
-    private String keyHashAlgo;
+    private String keyEncryptionAlgo;
     private String status;
-    private long createdAt;
-    private long updatedAt;
+    private long createdDate;
+    private long updatedDate;
     private String createdBy;
     private String updatedBy;
 
